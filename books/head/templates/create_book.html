@@ -5,6 +5,9 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="">
+        <a href="{% url 'head:home' %}">Назад</a>
+    </div>
     <form method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form %}

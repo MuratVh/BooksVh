@@ -20,11 +20,14 @@ def delete_book(request):
     form = DeleteBook(request.POST or None)
     # book = Book.objects.get(pk=form.data['pk'])
     if form.is_valid():
-        try:
-            # if Book.objects.get(pk=form.data['pk']):
+        # try:
+        #     # if Book.objects.get(pk=form.data['pk']):
+        #     Book.objects.get(pk=form.data['pk']).delete()
+        #     # else:
+        # except Book.DoesNotExist:
+        if Book.objects.filter(pk=form.data['pk']).exists():
             Book.objects.get(pk=form.data['pk']).delete()
-            # else:
-        except Book.DoesNotExist:
-                return render(request, 'error.html')
+        else:
+            return render(request, 'error.html')
         return redirect('head:home')
     return render(request, 'delete_book.html', {'form': form})
