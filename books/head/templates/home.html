@@ -8,6 +8,9 @@
     </title>
 </head>
 <body>
+    <div class="">
+        <a href="{% url 'head:create_book' %}">Добавить книгу</a>
+    </div>
     <ul>
         {% for book in books %}
         <li>
