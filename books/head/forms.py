@@ -19,3 +19,12 @@ class BookForm(forms.ModelForm):
             'year',
             'status',
         ]
+
+class DeleteBook(forms.ModelForm):
+    pk=forms.IntegerField(label='Введите id')
+
+    class Meta:
+        model = Book
+        fields = [
+            'pk',
+        ]

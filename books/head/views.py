@@ -14,3 +14,17 @@ def create_book(request):
         form.clean()
         return redirect('head:home')
     return render(request, 'create_book.html', {'form': form})
+
+def delete_book(request):
+    # books = Book.objects.all()
+    form = DeleteBook(request.POST or None)
+    # book = Book.objects.get(pk=form.data['pk'])
+    if form.is_valid():
+        try:
+            # if Book.objects.get(pk=form.data['pk']):
+            Book.objects.get(pk=form.data['pk']).delete()
+            # else:
+        except Book.DoesNotExist:
+                return render(request, 'error.html')
+        return redirect('head:home')
+    return render(request, 'delete_book.html', {'form': form})
