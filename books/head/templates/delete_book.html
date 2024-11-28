@@ -10,6 +10,7 @@
     </div>
     <form method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}
+        <span>
         {% for field in form %}
             <div class="field">
                 <label for="{{ field.id_for_label }}" class="label">
@@ -19,19 +20,20 @@
                     {{ field }}
                 </div>
             </div>
-        {% endfor %}
-        {% if form.errors %}
-            <ul>
-                {% for error in form.errors.values %}
-                    <li class="">{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <div>
+            {% endfor %}
+            {% if form.errors %}
+                <ul>
+                    {% for error in form.errors.values %}
+                        <li class="">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </span>
+        <span>
             <button>
                 Удалить
             </button>
-        </div>
+        </span>
     </form>
 </body>
 </html>

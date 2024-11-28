@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
+from django.db.models import Q
 
 def home(request):
     books = Book.objects.all()
@@ -31,3 +32,13 @@ def delete_book(request):
             return render(request, 'error.html')
         return redirect('head:home')
     return render(request, 'delete_book.html', {'form': form})
+
+def search_book(request):
+    search = request.GET.get('search')
+    if search:
+        search_books = Book.objects.filter(Q(title__icontains=search) |
+                                           Q(author__icontains=search) |
+                                           Q(year__icontains=search))
+    else:
+        search_books = None
+    return render(request, 'search_book.html', {'search_books': search_books})
