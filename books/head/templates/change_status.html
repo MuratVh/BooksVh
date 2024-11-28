@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="">
+        <a href="{% url 'head:home' %}">Назад</a>
+    </div>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <span>
+        {% for field in form %}
+            <div class="field">
+                <label for="{{ field.id_for_label }}" class="label">
+                    {{ field.label }}
+                </label>
+                <div class="control">
+                    {{ field }}
+                </div>
+            </div>
+            {% endfor %}
+            {% if form.errors %}
+                <ul>
+                    {% for error in form.errors.values %}
+                        <li class="">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </span>
+        <span>
+            <button>
+                Изменить
+            </button>
+        </span>
+    </form>
+</body>
+</html>

@@ -28,3 +28,14 @@ class DeleteBook(forms.ModelForm):
         fields = [
             'pk',
         ]
+
+class ChangeStatusForm(forms.ModelForm):
+    pk = forms.IntegerField(label='Введите id')
+    status = forms.ChoiceField(label='выберите статус', choices=STATUS)
+
+    class Meta:
+        model = Book
+        fields = [
+            'pk',
+            'status',
+        ]

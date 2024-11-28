@@ -19,6 +19,9 @@
     <div class="">
         <a href="{% url 'head:search_book' %}">Найти книгу</a>
     </div>
+    <div class="">
+        <a href="{% url 'head:change_status' %}">Изменить статус книги</a>
+    </div>
     <ul>
         {% for book in books %}
         <li>

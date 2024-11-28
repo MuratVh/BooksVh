@@ -42,3 +42,14 @@ def search_book(request):
     else:
         search_books = None
     return render(request, 'search_book.html', {'search_books': search_books})
+
+def change_status(request):
+    form = ChangeStatusForm(request.POST or None)
+    if form.is_valid():
+        book = Book.objects.filter(pk=form.data['pk'])
+        if book.exists():
+            book.update(status=form.data['status'])
+            return redirect('head:home')
+        else:
+            return render(request, 'error.html')
+    return render(request, 'change_status.html', {'form': form})
